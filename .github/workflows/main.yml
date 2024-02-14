@@ -1,0 +1,30 @@
+name: Python CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install telnetlib3  # або інші ваші залежності
+
+    - name: Run check_port_status script
+      run: python check_port_status.py --address example.com --port 80 --timeout 15
+
+    - name: Run telnet_interaction script
+      run: python telnet_interaction.py --address 192.168.1.1 --port 23

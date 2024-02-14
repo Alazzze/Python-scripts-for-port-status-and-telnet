@@ -23,8 +23,8 @@ jobs:
         python -m pip install --upgrade pip
         pip install telnetlib3  # або інші ваші залежності
 
-    - name: Run check_port_status script
-      run: python check_port_status.py --address 3.84.140.235 --port 8888 --timeout 15
+    - name: Run testscript_task.py
+      run: python $GITHUB_WORKSPACE/testscript_task.py --address 3.84.140.235 --port 8888 --timeout 15
 
-    - name: Run telnet_interaction script
-      run: python telnet_interaction.py --address 3.84.140.235 --port 8888
+    - name: Run testscript_task_telnet.py
+      run: python $GITHUB_WORKSPACE/testscript_task_telnet.py --address 192.168.1.1 --port 23

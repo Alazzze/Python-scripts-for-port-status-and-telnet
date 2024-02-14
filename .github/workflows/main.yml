@@ -27,6 +27,6 @@ jobs:
       run: python $GITHUB_WORKSPACE/testscript_task.py --address 3.84.140.235 --port 8888 --timeout 15
 
     - name: Run testscript_task.py (Port is not available)
-      run: python $GITHUB_WORKSPACE/testscript_task.py --address 3.84.140.235 --port 8882 --timeout 15
+      run: python $GITHUB_WORKSPACE/testscript_task.py --address 3.84.140.235 --port 8080 --timeout 15
 
     

@@ -39,6 +39,5 @@ python telnet_interaction.py --address 192.168.1.1 --port 23
 Check the status of a specific port on the switch:
 python telnet_interaction.py --address 192.168.1.1 --port 22
 
-Feel free to customize this README based on your specific needs. You can add more details, examples, or any additional information you find relevant.
 
 

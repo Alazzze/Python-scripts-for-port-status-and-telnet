@@ -31,6 +31,7 @@ async def send_command(writer, command):
 async def check_port_status(address, port):
     try:
         reader, writer = await telnetlib3.open_connection(address, port, encoding=False)
+        writer.close()
         return "Port is open"
     except OSError as e:
         if "Connect call failed" in str(e):
@@ -46,6 +47,11 @@ async def main():
 
     host = args.address
     port = args.port
+
+    port_status = await check_port_status(host, port)
+    print(f"Port status: {port_status}")
+    if port_status == "Port is not available":
+        return
 
     try:
         reader, writer = await telnetlib3.open_connection(host=host, port=port, encoding=False)
@@ -70,14 +76,8 @@ async def main():
             await send_command(writer, password)
             await asyncio.sleep(2)
 
-        # Перевірка статусу порту, якщо логін та пароль залишено пустими
-        if not login and not password:
-            port_status = await check_port_status(host, port)
-            print(f"Port status: {port_status}")
-            return
-
         while True:
-            command = input("\n Enter command (type 'exit' or 'quit' to exit): ")
+            command = input("\nEnter command (type 'exit' or 'quit' to exit): ")
             if command.lower() in ["exit", "quit"]:
                 await send_command(writer, command)
                 await asyncio.sleep(2)

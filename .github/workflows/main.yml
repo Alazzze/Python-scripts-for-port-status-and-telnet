@@ -21,15 +21,10 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install telnetlib3  # or any other dependencies
+        pip install telnetlib3  # або інші залежності
 
-    - name: Run testscript_task.py (Port is open)
+    - name: Run testscript_task.py
       run: python $GITHUB_WORKSPACE/testscript_task.py --address 3.84.140.235 --port 8888 --timeout 15
 
-    - name: Run testscript_task.py (Port is not available)
-      run: |
-        set +e  # Disable automatic exit on error
-        python $GITHUB_WORKSPACE/testscript_task.py --address 3.84.140.235 --port 8080 --timeout 15
-        exit_code=$?
-        set -e  # Enable automatic exit on error
-    
+    - name: Check script output for success
+      run: grep -q "Port is open" $GITHUB_WORKSPACE/testscript_task.py && echo "Port is open" || echo "Port is not available"

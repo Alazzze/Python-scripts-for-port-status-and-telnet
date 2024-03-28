@@ -1,3 +1,4 @@
+[![GitHub Actions Status](https://github.com/Alazzze/Python-scripts-for-port-status-and-telnet/workflows/main/badge.svg)](https://github.com/Alazzze/Python-scripts-for-port-status-and-telnet/actions)
 # Python Scripts for Port Status and Telnet Interaction
 
 ## Check Port Status Script
